@@ -17,8 +17,8 @@ module Stuff =
     // an iteration run: replicates the base pattern to all previous steps
     // and transform it on each steps, then append the n-1 direction
     let iterate s =
-        Seq.zip (Seq.scan (fun prevPattern d -> flip d prevPattern) basePattern s) s
-        |> Seq.map (fun (s,d) -> s @ [d]) |> Seq.concat
+        Seq.mapFold (fun curPattern curDir -> (curPattern @ [curDir], flip curDir curPattern)) basePattern s
+        |> function (seqs, finalPattern) -> Seq.append (Seq.concat seqs) finalPattern
 
     // reapplies the iteration the given number of time
     let fractal i =

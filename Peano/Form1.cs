@@ -17,9 +17,9 @@ namespace Peano
         {
             InitializeComponent();
 
-            int iteration = 1;
-            int patternSize = 3;
-            int edgeLength = 10;
+            const int patternSize = 3;
+            int iteration = 4;
+            int edgeLength = 5;
             int imgSize = (int)Math.Pow(patternSize,(iteration + 1 )) * edgeLength;
             _fractal = new Bitmap(imgSize, imgSize);
             using (var g = Graphics.FromImage(_fractal))
